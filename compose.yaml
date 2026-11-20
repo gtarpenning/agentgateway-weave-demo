@@ -1,0 +1,10 @@
+services:
+  agentgateway:
+    # Nightly build; the coreweave provider is not in a tagged release yet (newer than v1.7.0).
+    image: ghcr.io/agentgateway/agentgateway:v0.0.0-alpha.cec2c4ee
+    command: ["-f", "/config/config.yaml"]
+    env_file: .env
+    ports:
+      - "${GATEWAY_PORT:-4000}:4000"
+    volumes:
+      - ./config.yaml:/config/config.yaml:ro
